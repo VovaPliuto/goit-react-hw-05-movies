@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 import { DetailsWrapper, Poster,AdditionalInfo } from './MovieCard.styled';
 
@@ -42,3 +44,7 @@ const MovieCard = ({ movieDetails }) => {
 };
 
 export default MovieCard;
+
+MovieCard.propTypes = {
+  movieDetails: PropTypes.object.isRequired,
+}

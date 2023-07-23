@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import { ProfileImg, ProfileList, ProfileListItem } from './CastList.styled';
 
@@ -26,3 +28,7 @@ const CastList = ({ movieCast }) => {
 };
 
 export default CastList;
+
+CastList.propTypes = {
+  movieCast: PropTypes.array.isRequired,
+}
