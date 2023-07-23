@@ -8,7 +8,7 @@ import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import CastList from 'components/CastList/CastList';
 
 const Cast = () => {
-  const [movieCast, setMovieCast] = useState(null);
+  const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { movieId } = useParams();
@@ -19,8 +19,9 @@ const Cast = () => {
     const fetchFilmCast = async () => {
       try {
         setIsLoading(true);
-        const movieData = await fetchMovieCredits(movieId);
-        setMovieCast(movieData);
+        const { cast } = await fetchMovieCredits(movieId);
+        console.log(cast);
+        setMovieCast(cast);
       } catch (error) {
         setError(error.messasge);
       } finally {
@@ -35,7 +36,11 @@ const Cast = () => {
     <>
       {isLoading && <Loader />}
       {error !== null && <ErrorMessage error={error} />}
-      {movieCast !== null && <CastList movieCast={movieCast} />}
+      {movieCast.length > 0 ? (
+        <CastList movieCast={movieCast} />
+      ) : (
+        <p>We don't have any information about the cast for this movie.</p>
+      )}
     </>
   );
 };

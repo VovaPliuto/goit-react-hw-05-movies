@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { fetchMovieDetails } from 'services/fetchAPI';
@@ -6,7 +6,7 @@ import Loader from 'components/Loader/Loader';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
-import { Container } from './Movies.styled';
+import { Container } from './Movies/Movies.styled';
 import MovieCard from 'components/MovieCard/MovieCard';
 
 const MovieDetails = () => {
@@ -43,7 +43,9 @@ const MovieDetails = () => {
         <Container>
           <GoBackBtn location={backLinkRef}>← Go back</GoBackBtn>
           <MovieCard movieDetails={movieDetails} />
-          <Outlet />
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </Container>
       )}
     </>

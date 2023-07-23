@@ -5,7 +5,7 @@ import { ProfileImg, ProfileList, ProfileListItem } from './CastList.styled';
 const CastList = ({ movieCast }) => {
   return (
     <ProfileList>
-      {movieCast.cast.map(({ id, name, character, profile_path }) => {
+      {movieCast.map(({ id, name, character, profile_path }) => {
         return (
           <ProfileListItem key={id}>
             <ProfileImg
